@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCompaniesTable extends Migration
+class CreateCompanySitesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateCompaniesTable extends Migration
      */
     public function up()
     {
-        Schema::create('companies', function (Blueprint $table) {
-            //递增 ID（主键），相当于「UNSIGNED BIG INTEGER」
+        Schema::create('company_sites', function (Blueprint $table) {
             $table->bigIncrements('id');
-            //相当于带长度的 VARCHAR
             $table->string('name')->nullable();
             $table->string('uuid')->unique();
             $table->string('address')->nullable();
@@ -32,6 +30,6 @@ class CreateCompaniesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('companies');
+        Schema::dropIfExists('company_sites');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\User;
+use App\Admin\Models\CompanySite;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
@@ -10,7 +10,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 
-class UserController extends Controller
+class CompanySiteController extends Controller
 {
     use HasResourceActions;
 
@@ -79,15 +79,9 @@ class UserController extends Controller
      */
     protected function grid()
     {
-        $grid = new Grid(new User);
+        $grid = new Grid(new CompanySite);
 
-        $grid->id('Id');
-        $grid->name('Name');
-        $grid->email('Email');
-        $grid->password('Password');
-        $grid->remember_token('Remember token');
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
+
 
         return $grid;
     }
@@ -100,15 +94,9 @@ class UserController extends Controller
      */
     protected function detail($id)
     {
-        $show = new Show(User::findOrFail($id));
+        $show = new Show(CompanySite::findOrFail($id));
 
-        $show->id('Id');
-        $show->name('Name');
-        $show->email('Email');
-        $show->password('Password');
-        $show->remember_token('Remember token');
-        $show->created_at('Created at');
-        $show->updated_at('Updated at');
+
 
         return $show;
     }
@@ -120,12 +108,9 @@ class UserController extends Controller
      */
     protected function form()
     {
-        $form = new Form(new User);
+        $form = new Form(new CompanySite);
 
-        $form->text('name', 'Name');
-        $form->email('email', 'Email');
-        $form->password('password', 'Password');
-        $form->text('remember_token', 'Remember token');
+
 
         return $form;
     }

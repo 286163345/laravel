@@ -87,6 +87,7 @@ class CompanyController extends Controller
         $grid->id('Id');
         $grid->uuid('Uuid');
         $grid->name('Name');
+        $grid->address('Address');
         $grid->paginate(15);
 
         return $grid;
@@ -116,6 +117,7 @@ class CompanyController extends Controller
     {
         $form = new Form(new Company);
         $form->text('name', 'CompanyName');
+        $form->text('address', 'Address');
         //保存前回调
         $form->saving(function (Form $form) {
             if(empty($form->model()->uuid)){
