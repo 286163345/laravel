@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Admin\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Brand extends Model
+class company extends Model
 {
     //
 }

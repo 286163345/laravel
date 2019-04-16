@@ -19,8 +19,9 @@ class CreateCompaniesTable extends Migration
             //相当于带长度的 VARCHAR
             $table->string('name')->default(null);
             $table->string('uuid');
+            $table->string('address')->default(null);
             $table->dateTime('created_at')->default(null);
-            $table->dateTime('update_at')->default(null);
+            $table->dateTime('updated_at')->default(null);
             $table->unique('uuid');
         });
     }

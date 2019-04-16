@@ -9,8 +9,8 @@ Route::group([
     'namespace'     => config('admin.route.namespace'),
     'middleware'    => config('admin.route.middleware'),
 ], function (Router $router) {
-
+    $router->resource('/company','CompanyController');
     $router->get('/', 'HomeController@index');
-//    $router->resource('demo/user',\App\Admin\Controllers\UserController::class);
+
 
 });
