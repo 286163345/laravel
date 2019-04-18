@@ -13,3 +13,4 @@ php artisan migrate:refresh  重置数据库并重新运行所有迁移
 
 php artisan make:model Brand -m　　//创建模型并生成迁移文件
 php artisan admin:make BrandController --model=App\Brand　　//创建关联Brand模型的控制器
+php artisan make:migration add_intro_column_to_articles --table=articles  往已生成的表中添加新字段
