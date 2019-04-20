@@ -177,6 +177,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Spatie\Menu\Laravel\MenuServiceProvider::class, //laravel-menu插件注册
 
     ],
 
@@ -229,6 +230,7 @@ return [
         'EntityManager' => LaravelDoctrine\ORM\Facades\EntityManager::class,
         'Registry' => LaravelDoctrine\ORM\Facades\Registry::class,
         'Doctrine' => LaravelDoctrine\ORM\Facades\Doctrine::class,
+        'Menu' => Spatie\Menu\Laravel\MenuFacade::class, //laravel-menu插件注册
 
     ],
 
