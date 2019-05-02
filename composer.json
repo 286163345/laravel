@@ -15,7 +15,8 @@
         "moontoast/math": "^1.1",
         "ramsey/uuid": "^3.8",
         "ramsey/uuid-doctrine": "^1.5",
-        "spatie/laravel-menu": "^3.3"
+        "spatie/laravel-menu": "^3.3",
+        "xethron/migrations-generator": "^2.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

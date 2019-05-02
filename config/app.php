@@ -178,6 +178,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Spatie\Menu\Laravel\MenuServiceProvider::class, //laravel-menu插件注册
+        Way\Generators\GeneratorsServiceProvider::class,//逆生成迁移文件插件
+        Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,//逆生成迁移文件插件
 
     ],
 
