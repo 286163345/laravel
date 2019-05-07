@@ -81,7 +81,11 @@ class CompanySiteController extends Controller
     {
         $grid = new Grid(new CompanySite);
 
-
+        $grid->id('id');
+        $grid->name('name');
+        $grid->address('address');
+        $grid->company()->name('Company Name');
+        $grid->paginate(15);
 
         return $grid;
     }
@@ -109,9 +113,9 @@ class CompanySiteController extends Controller
     protected function form()
     {
         $form = new Form(new CompanySite);
-
-
-
+        $form->text('name','Site Name');
+        $form->text('address','Site Address');
+        $this->setTableUuid($form);
         return $form;
     }
 }

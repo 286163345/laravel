@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Models\Company;
+use App\Admin\Models\CompanySite;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
@@ -10,7 +11,6 @@ use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 use Encore\Admin\Facades\Admin;
-use App\Service\CommonService;
 
 class CompanyController extends Controller
 {
@@ -88,6 +88,18 @@ class CompanyController extends Controller
         $grid->uuid('Uuid');
         $grid->name('Name');
         $grid->address('Address');
+//        $grid->companySite()->display(function ($companySite) {
+//
+//            $res = array_map(function ($companySite) {
+//                return "<span class='label label-success'>{$companySite['name']}</span>";
+//            }, $companySite);
+//
+//            return $res;
+//        });
+        $grid->companySite('Branch')->display(function ($branch) {
+            $count = count($branch);
+            return "<span class='label label-warning'>{$count}</span>";
+        });
         $grid->paginate(15);
 
         return $grid;
@@ -116,14 +128,10 @@ class CompanyController extends Controller
     protected function form()
     {
         $form = new Form(new Company);
-        $form->text('name', 'CompanyName');
+        $form->text('name', 'Company Name');
         $form->text('address', 'Address');
-        //保存前回调
-        $form->saving(function (Form $form) {
-            if(empty($form->model()->uuid)){
-                $form->model()->uuid = CommonService::uuidGenerated();
-            }
-        });
+        $form->multipleSelect('CompanySites')->options(CompanySite::all()->pluck('name','id')->dump());
+        $this->setTableUuid($form);
         return $form;
     }
 }

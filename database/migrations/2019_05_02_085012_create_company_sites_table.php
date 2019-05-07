@@ -19,6 +19,7 @@ class CreateCompanySitesTable extends Migration {
 			$table->string('uuid')->unique();
 			$table->string('address')->nullable();
 			$table->timestamps();
+			$table->integer('company_id')->nullable();
 		});
 	}
 
