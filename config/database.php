@@ -39,7 +39,7 @@ return [
             'prefix' => '',
         ],
 
-        'mysql' => [
+        'mysql_admin' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
@@ -49,7 +49,22 @@ return [
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
+            'prefix' => 'ma_',
+            'strict' => true,
+            'engine' => null,
+        ],
+
+        'mysql_home' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST_NEW', '127.0.0.1'),
+            'port' => env('DB_PORT_NEW', '3306'),
+            'database' => env('DB_DATABASE_NEW', 'forge'),
+            'username' => env('DB_USERNAME_NEW', 'forge'),
+            'password' => env('DB_PASSWORD_NEW', ''),
+            'unix_socket' => env('DB_SOCKET_NEW', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => 'mh_',
             'strict' => true,
             'engine' => null,
         ],

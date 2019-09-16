@@ -3,7 +3,6 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Models\Company;
-use App\Admin\Models\CompanySite;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
@@ -84,21 +83,13 @@ class CompanyController extends Controller
     {
         $grid = new Grid(new Company);
 
-        $grid->id('Id');
-        $grid->uuid('Uuid');
-        $grid->name('Name');
-        $grid->address('Address');
-//        $grid->companySite()->display(function ($companySite) {
-//
-//            $res = array_map(function ($companySite) {
-//                return "<span class='label label-success'>{$companySite['name']}</span>";
-//            }, $companySite);
-//
-//            return $res;
-//        });
-        $grid->companySite('Branch')->display(function ($branch) {
-            $count = count($branch);
-            return "<span class='label label-warning'>{$count}</span>";
+        $grid->column('id', 'ID')->sortable();
+        $grid->column('company_name','CompanyName');
+        $grid->column('created_at');
+        $grid->column('updated_at');
+        $grid->filter(function ($filter) {
+            // 设置created_at字段的范围查询
+            $filter->between('created_at', 'Created Time')->datetime();
         });
         $grid->paginate(15);
 
@@ -128,10 +119,9 @@ class CompanyController extends Controller
     protected function form()
     {
         $form = new Form(new Company);
-        $form->text('name', 'Company Name');
-        $form->text('address', 'Address');
-        $form->multipleSelect('CompanySites')->options(CompanySite::all()->pluck('name','id')->dump());
-        $this->setTableUuid($form);
+        $form->display('id', 'ID');
+        $form->text('company_name', 'CompanyName');
+//        $this->setTableUuid($form);
         return $form;
     }
 }

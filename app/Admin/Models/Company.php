@@ -9,10 +9,7 @@ namespace App\Admin\Models;
 
 use App\Admin\Models\BaseModel;
 
-class company extends BaseModel
+class Company extends BaseModel
 {
-    public function companySite()
-    {
-        return $this->hasMany(CompanySite::class,'company_id','id');
-    }
+
 }

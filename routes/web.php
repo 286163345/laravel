@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('blade.welcome');
+//Route::get('/', function () {
+//    return view('blade.welcome');
+//});
+Route::prefix('show')->group(function () {
+    Route::resource('/company','CompanyController');
+    Route::resource('/','MenuController');
 });
