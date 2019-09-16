@@ -12,6 +12,6 @@ php artisan migrate:reset   执行回滚迁移(所有)
 php artisan migrate:refresh  重置数据库并重新运行所有迁移
 php artisan migrate:generate  根据数据库已有表生成迁移文件
 
-php artisan make:model Brand -m　　//创建模型并生成迁移文件
+php artisan make:model Brand -m　　//创建模型并生成迁移文件   不加-m 只会创建模型
 php artisan admin:make BrandController --model=App\Brand　　//创建关联Brand模型的控制器
 php artisan make:migration add_intro_column_to_articles --table=articles  往已生成的表中添加新字段
