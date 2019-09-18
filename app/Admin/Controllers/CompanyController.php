@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Models\Company;
+use App\Admin\Models\Companies;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
@@ -81,7 +81,7 @@ class CompanyController extends Controller
      */
     protected function grid()
     {
-        $grid = new Grid(new Company);
+        $grid = new Grid(new Companies);
 
         $grid->column('id', 'ID')->sortable();
         $grid->column('company_name','CompanyName');
@@ -104,7 +104,7 @@ class CompanyController extends Controller
      */
     protected function detail($id)
     {
-        $show = new Show(Company::findOrFail($id));
+        $show = new Show(Companies::findOrFail($id));
 
 
 
@@ -118,7 +118,7 @@ class CompanyController extends Controller
      */
     protected function form()
     {
-        $form = new Form(new Company);
+        $form = new Form(new Companies);
         $form->display('id', 'ID');
         $form->text('company_name', 'CompanyName');
 //        $this->setTableUuid($form);

@@ -9,7 +9,11 @@ namespace App\Admin\Models;
 
 use App\Admin\Models\BaseModel;
 
-class Company extends BaseModel
+class Companies extends BaseModel
 {
+    //设置可以被批量赋值
+    protected $fillable = ['company_name'];
 
+    //黑名单
+    protected $guarded = [];
 }
