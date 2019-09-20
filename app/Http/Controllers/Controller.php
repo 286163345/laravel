@@ -8,6 +8,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Redis;
 
 class Controller extends BaseController
 {
@@ -24,17 +25,18 @@ class Controller extends BaseController
         });
     }
 
-    //一对多添加方法或者多对一都可以使用,table需要添加的表,bingTable被绑定的表
     /**
-     * @param $form
-     * @param $table
-     * @param $bingTable
+     * @param $view
+     * @param array $parameters
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function oneToMany($form, $table, $bingTable){
-        if($form){
-
-        }else{
-
-        }
+    public function renderView($view, array $parameters = array())
+    {
+        $globalArray = array(
+            'menu' => Redis::get('Menu'),
+        );
+        $templateArray = array_merge($parameters,$globalArray);
+        return view($view,$templateArray);
     }
+
 }

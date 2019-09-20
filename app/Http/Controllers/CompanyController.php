@@ -23,10 +23,8 @@ class CompanyController extends Controller
         $company = Companies::where($where)->orderBy('id','desc')->paginate(15);
         $param = array(
             'company' => $company,
-            'menu' => Redis::get('Menu'),
         );
-
-        return view('blade.company.list',$param);
+        return $this->renderView('blade.company.list',$param);
     }
 
     public function create(FormBuilder $formBuilder)
