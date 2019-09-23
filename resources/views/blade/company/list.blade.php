@@ -94,27 +94,3 @@
         </div>
     </div>
 @endsection
-@section('script')
-    <script>
-        $(document).ready(function(){
-            var message = '{{session('message')}}';
-            console.log('11111111',message)
-            if(message != '' || message != null){
-                setTimeout(function() {
-                    toastr.options = {
-                        closeButton: true,
-                        progressBar: true,
-                        showMethod: 'slideDown',
-                        timeOut: 4000
-                    };
-                    toastr.success(message);
-                }, 1300);
-            }
-
-            $('.i-checks').iCheck({
-                checkboxClass: 'icheckbox_square-green',
-                radioClass: 'iradio_square-green',
-            });
-        });
-    </script>
-    @endsection

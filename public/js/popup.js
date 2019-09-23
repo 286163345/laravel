@@ -1,4 +1,5 @@
 $(function () {
+    //list  edit   save 所需jquery
     $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
 
     //公共list页删除按钮
@@ -18,12 +19,16 @@ $(function () {
                         location.replace(location.href);
                     });
                 },
-                error: function () {
-                    layer.msg('删除失败!',{icon: 5,anim:6,time:1000});
+                error: function (msg) {
+                    layer.msg(msg.error,{icon: 5,anim:6,time:1000});
                 }
             });
         });
     }
 
-
+    //check样式框class添加
+    $('.i-checks').iCheck({
+        checkboxClass: 'icheckbox_square-green',
+        radioClass: 'iradio_square-green',
+    });
 })

@@ -1019,6 +1019,19 @@
     <!-- iCheck -->
     <script src="{{ url::asset('home/js/plugins/iCheck/icheck.min.js') }}"></script>
     @section('script')
+        <script>
+            $(document).ready(function(){
+                var message = '{{session('message')}}';
+                if(message != '' || message != null){
+                    layer.msg(message,{icon: 6,anim:6,time:1000});
+                }
+
+                $('.i-checks').iCheck({
+                    checkboxClass: 'icheckbox_square-green',
+                    radioClass: 'iradio_square-green',
+                });
+            });
+        </script>
         @show
 </body>
 </html>

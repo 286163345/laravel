@@ -87,9 +87,16 @@ class CompanyController extends Controller
 
     /**
      * 方法:GET  请求URL:/company/{id}
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy()
+    public function destroy($id)
     {
-        return response()->json(['message'=>'删除成功!']);
+        $company = Companies::destroy($id);
+        if(!empty($company)){
+            return response()->json(['message'=>'删除成功!']);
+        }else{
+            return response()->json(['error'=>'删除失败!']);
+        }
     }
 }
