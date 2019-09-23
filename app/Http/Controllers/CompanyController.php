@@ -39,9 +39,8 @@ class CompanyController extends Controller
 
         $param = array(
             'form' => $form,
-            'menu' => Redis::get('Menu'),
         );
-        return view('blade.company.add',$param);
+        return $this->renderView('blade.company.add',$param);
     }
 
     /**
@@ -71,10 +70,21 @@ class CompanyController extends Controller
 
     /**
      * 方法:GET 请求URL:/company/{id}/edit
+     * @param FormBuilder $formBuilder
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit()
+    public function edit(FormBuilder $formBuilder,$id)
     {
-        dd(11111);
+        $entity = Companies::find($id);
+        $form = $formBuilder->create(CompanyForm::class,[
+            'method' => 'POST',
+            'url' => route('company.store')
+        ],$entity);
+        $param = array(
+            'form' => $form,
+        );
+        return $this->renderView('blade.company.edit',$param);
     }
 
     /**
