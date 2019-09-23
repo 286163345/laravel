@@ -16,4 +16,5 @@ class Companies extends BaseModel
 
     //黑名单
     protected $guarded = [];
+
 }

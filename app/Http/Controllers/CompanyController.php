@@ -13,6 +13,7 @@ use http\Env\Response;
 use Illuminate\Support\Facades\Redis;
 use Kris\LaravelFormBuilder\FormBuilder;
 use Symfony\Component\HttpFoundation\Request;
+use App\Forms\BaseForm;
 
 class CompanyController extends Controller
 {
@@ -29,6 +30,8 @@ class CompanyController extends Controller
 
     /**
      * 方法:GET 请求URL:/company/creat
+     * @param FormBuilder $formBuilder
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create(FormBuilder $formBuilder)
     {
@@ -77,9 +80,11 @@ class CompanyController extends Controller
     public function edit(FormBuilder $formBuilder,$id)
     {
         $entity = Companies::find($id);
+        $entity = collect($entity)->toArray();
+
         $form = $formBuilder->create(CompanyForm::class,[
-            'method' => 'POST',
-            'url' => route('company.store')
+            'method' => 'PUT',
+            'url' => route('company.update',['id'=>$id])
         ],$entity);
         $param = array(
             'form' => $form,
@@ -89,10 +94,22 @@ class CompanyController extends Controller
 
     /**
      * 方法:PUT/PATCH  请求URL:/company/{id}
+     * @param FormBuilder $formBuilder
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function save()
+    public function update(FormBuilder $formBuilder, $id)
     {
-
+        $form = $formBuilder->create(CompanyForm::class);
+        if (!$form->isValid()) {
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
+        $company = Companies::where('id','=',$id)->update($form->getFieldValues());
+        if(!empty($company)){
+            return redirect('show/company')->with('message', '修改成功!');
+        }else{
+            return redirect('show/company')->with('message', '修改失败!');
+        }
     }
 
     /**
