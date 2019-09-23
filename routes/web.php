@@ -16,5 +16,9 @@
 //});
 Route::prefix('show')->group(function () {
     Route::resource('/company','CompanyController');
+    Route::get('company/{id}/delete', [
+//        'as' => 'users.delete',
+        'company' => 'CompanyController@destroy',
+    ]);
     Route::resource('/','MenuController');
 });

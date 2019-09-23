@@ -46,6 +46,8 @@ class CompanyController extends Controller
 
     /**
      * 方法:POST 请求URL:/company
+     * @param FormBuilder $formBuilder
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(FormBuilder $formBuilder)
     {
@@ -55,7 +57,7 @@ class CompanyController extends Controller
         }
         $company = Companies::create($form->getFieldValues());
         if(!empty($company->id)){
-            return redirect('show/company')->with('message', '保存成功!');;
+            return redirect('show/company')->with('message', '保存成功!');
         }
     }
 
@@ -72,7 +74,7 @@ class CompanyController extends Controller
      */
     public function edit()
     {
-
+        dd(11111);
     }
 
     /**
@@ -88,6 +90,6 @@ class CompanyController extends Controller
      */
     public function destroy()
     {
-
+        return response()->json(['message'=>'删除成功!']);
     }
 }

@@ -55,10 +55,10 @@
                                         <table class="table table-striped">
                                             <thead>
                                             <tr>
-
                                                 <th></th>
                                                 <th>编号 </th>
                                                 <th>公司名称 </th>
+                                                <th>创建时间</th>
                                                 <th>更新时间</th>
                                                 <th>操作</th>
                                             </tr>
@@ -71,6 +71,13 @@
                                                     <td>{{$val['company_name']}}</td>
                                                     <td>{{$val['created_at']}}</td>
                                                     <td>{{$val['updated_at']}}</td>
+                                                    <td>
+                                                        <a href="{{ url('show/company/'.$val['id'].'/edit') }}">
+                                                            <button type="button" class="btn btn-warning m-r-md">编辑</button>
+                                                        </a>
+                                                        <button type="button" class="btn btn-danger m-r-md" data-href="{{ url('show/company',$val['id']) }}" id="del">删除</button>
+
+                                                    </td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
@@ -91,7 +98,8 @@
     <script>
         $(document).ready(function(){
             var message = '{{session('message')}}';
-            if(message !== '' || message !== undefined){
+            console.log('11111111',message)
+            if(message != '' || message != null){
                 setTimeout(function() {
                     toastr.options = {
                         closeButton: true,
@@ -102,6 +110,7 @@
                     toastr.success(message);
                 }, 1300);
             }
+
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',
