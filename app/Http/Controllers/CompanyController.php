@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 
 use App\Admin\Models\Companies;
 use App\Forms\CompanyForm;
+use App\Service\CommonService;
 use http\Env\Response;
 use Illuminate\Support\Facades\Redis;
 use Kris\LaravelFormBuilder\FormBuilder;
@@ -19,7 +20,9 @@ class CompanyController extends Controller
 {
     public function index(Request $request)
     {
-//        $request->get('');
+        //调用公共文件
+//        $res = (new CommonService())->test();
+//        dd($res);
         $where = [];
         $company = Companies::where($where)->orderBy('id','desc')->paginate(15);
         $param = array(

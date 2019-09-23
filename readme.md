@@ -17,3 +17,4 @@ php artisan admin:make BrandController --model=App\Brand　　//创建关联Bran
 php artisan make:migration add_intro_column_to_articles --table=articles  往已生成的表中添加新字段
 
 php artisan make:form Forms/PostForm  创建表单
+composer dump-autoload  加载app/service下的php文件生成全局公共方法

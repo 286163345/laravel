@@ -14,5 +14,10 @@ class CommonService
     {
         return (string) Uuid::uuid1();
     }
+
+    public function test()
+    {
+        return '测试没问题';
+    }
 }
 
